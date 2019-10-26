@@ -1,0 +1,24 @@
+function myFunction(icon) {
+    icon.classList.toggle('clicked');
+
+    const x = document.getElementById('main-nav');
+    if (x.style.display === 'block') {
+        x.style.display = 'none';
+    } else {
+        x.style.display = 'block';
+    }
+}
+
+$(document).ready(function() {
+    $('.slick').slick({
+        dots: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        adaptiveHeight: true,
+        nextArrow:
+            '<button type="button" class="slick-next"><i class="fa fa-angle-right"></i></button>',
+        prevArrow:
+            '<button type="button" class="slick-prev"><i class="fa fa-angle-left"></i></button>'
+    });
+});

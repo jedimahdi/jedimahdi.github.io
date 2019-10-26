@@ -1,143 +1,153 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="resume for mahdi-se">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mahdi Se </title>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link rel="stylesheet" href="css/main.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <title>Rush</title>
+    </head>
+    <body>
+        <div class="outer-container">
+            <header class="container">
+                <div class="top-bar">
+                    <div class="logo">
+                        <h1>
+                            <b>R<span class="hide-sm">USH </span></b>
+                            <span class="hide-sm"> CREATIVE TEAM</span>
+                        </h1>
+                    </div>
+                    <nav class="menu" id="main-nav">
+                        <ul>
+                            <li>
+                                <a href="#">Portofilo</a>
+                            </li>
 
-    <!-- Disable tap highlight on IE -->
-    <meta name="msapplication-tap-highlight" content="no">
+                            <li>
+                                <a href="#" class="hire-link">Hire Us</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div
+                        class="nav-icon hamburger-icon"
+                        onclick="myFunction(this)"
+                    >
+                        <div></div>
+                    </div>
+                </div>
 
-    <!-- Web Application Manifest -->
-    <link rel="manifest" href="manifest.json">
+                <div class="site-header">
+                    <h2>Professional</h2>
+                </div>
 
-    <!-- Add to homescreen for Chrome on Android -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Web Starter Kit">
-    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+                <div class="recent-works">Recent works</div>
+            </header>
 
-    <!-- Add to homescreen for Safari on iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Web Starter Kit">
-    <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+            <main>
+                <section id="projects">
+                    <div class="project"></div>
+                    <div class="project"></div>
+                    <div class="project"></div>
+                    <div class="project"></div>
+                </section>
 
-    <!-- Tile icon for Win8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
-    <meta name="msapplication-TileColor" content="#2F3BA2">
+                <section id="comments" class="container">
+                    <h3 class="comments-title">Customers oppunion</h3>
 
-    <!-- Color the status bar on mobile devices -->
-    <meta name="theme-color" content="#2F3BA2">
+                    <div class="slick">
+                        <div class="comment">
+                            <div class="comment-info">
+                                <img
+                                    class="comment-image"
+                                    src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
+                                    alt="profile picture"
+                                />
+                                <h4>
+                                    Babak Zanjani
+                                </h4>
+                                <small>Iranian wolf of wall street</small>
 
-    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
-    <!--
-    <link rel="canonical" href="http://www.example.com/">
-    -->
+                                <p>
+                                    "Yes, design systems will replace many
+                                    design jobs as we know them today they
+                                    already have. Interface development
+                                    patterns, processes and tools are like
+                                    interchangable parts and factory assembly
+                                    lines - tools of industrial"
+                                </p>
+                            </div>
+                        </div>
 
-    <!-- Material Design Lite page styles:
-    You can choose other color schemes from the CDN, more info here http://www.getmdl.io/customize/index.html
-    Format: material.color1-color2.min.css, some examples:
-    material.red-teal.min.css
-    material.blue-orange.min.css
-    material.purple-indigo.min.css
-    -->
-    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
+                        <div class="comment">
+                            <div class="comment-info">
+                                <img
+                                    class="comment-image"
+                                    src="https://semantic-ui.com/images/avatar2/large/elyse.png"
+                                    alt="profile picture"
+                                />
+                                <h4>Babak Zanjani</h4>
+                                <small>Iranian wolf of wall street</small>
 
-    <!-- Material Design icons -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+                                <p>
+                                    "Yes, design systems will replace many
+                                    design jobs as we know them today they
+                                    already have. Interface development
+                                    patterns, processes and tools are like
+                                    interchangable parts and factory assembly
+                                    lines - tools of industrial"
+                                </p>
+                            </div>
+                        </div>
 
-    <!-- Your styles -->
-    <link rel="stylesheet" href="styles/main.css">
-  </head>
-  <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
-  <div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
-    <header class="demo-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800">
-      <div class="mdl-layout__header-row">
-        <span class="mdl-layout-title">Mahdi Seyyedan</span>
-        <div class="mdl-layout-spacer"></div>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-          <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
-            <i class="material-icons">search</i>
-          </label>
-          <div class="mdl-textfield__expandable-holder">
-            <input class="mdl-textfield__input" type="text" id="search">
-            <label class="mdl-textfield__label" for="search">Enter your query...</label>
-          </div>
+                        <div class="comment">
+                            <div class="comment-info">
+                                <img
+                                    class="comment-image"
+                                    src="https://semantic-ui.com/images/avatar2/large/kristy.png"
+                                    alt="profile picture"
+                                />
+                                <h4>Babak Zanjani</h4>
+                                <small>Iranian wolf of wall street</small>
+
+                                <p>
+                                    "Yes, design systems will replace many
+                                    design jobs as we know them today they
+                                    already have. Interface development
+                                    patterns, processes and tools are like
+                                    interchangable parts and factory assembly
+                                    lines - tools of industrial"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="progress" class="container">
+                    <h3>How it works</h3>
+                    <div class="slick">
+                        <div class="process">
+                            <div class="animation"></div>
+                            <h4>It starts with an Idea.</h4>
+                            <p>
+                                "Yes, design systems will replace many design
+                                jobs as we know them today they already have.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </main>
         </div>
-      </div>
-    </header>
-    <div class="demo-ribbon"></div>
-    <main class="demo-main mdl-layout__content">
-      <div class="demo-container mdl-grid">
-        <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
-        <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-          <div class="demo-crumbs mdl-color-text--grey-500">
-            Google &gt; Material Design Lite &gt; How to install MDL
-          </div>
-          <h3>How to install MDL</h3>
-          <p>
-            Cillum dolor esse sit incididunt velit eiusmod magna ad nostrud officia aute dolor dolor. Magna esse ullamco pariatur adipisicing consectetur eu commodo officia. Ex cillum consequat mollit minim elit est deserunt occaecat nisi amet. Quis aliqua nostrud Lorem occaecat sunt. Eiusmod quis amet ullamco aliquip dolore ut incididunt duis adipisicing. Elit consequat nisi eiusmod aute ipsum sunt veniam do est. Occaecat mollit aliquip ut proident consectetur amet ex dolore consectetur aliqua elit.
-          </p>
-          <p>
-            Commodo nisi non consectetur voluptate incididunt mollit duis dolore amet amet tempor exercitation. Qui amet aute ea aute id ad aliquip proident. Irure duis qui labore deserunt enim in quis nisi sint consequat aliqua. Ex proident labore et laborum tempor fugiat sint magna veniam minim. Nulla dolor labore adipisicing in enim mollit laboris fugiat eu. Aliquip minim cillum ullamco voluptate non dolore non ex duis fugiat duis ad. Deserunt cillum ad et nisi amet non voluptate culpa qui do. Labore ullamco et minim proident est laborum mollit ad labore deserunt ut irure dolore. Reprehenderit ad ad irure ut irure qui est eu velit eu excepteur adipisicing culpa. Laborum cupidatat ullamco eu duis anim reprehenderit proident aute ad consectetur eiusmod.
-          </p>
-          <p>
-            Tempor tempor aliqua in commodo cillum Lorem magna dolore proident Lorem. Esse ad consequat est excepteur irure eu irure quis aliqua qui. Do mollit esse veniam excepteur ut veniam anim minim dolore sit commodo consequat duis commodo. Sunt dolor reprehenderit ipsum minim eiusmod eu consectetur anim excepteur eiusmod. Duis excepteur anim dolor sit enim veniam deserunt anim adipisicing Lorem elit. Cillum sunt do consequat elit laboris nisi consectetur.
-          </p>
-          <h3>Basic MDL Usage</h3>
-          <p>
-            Cillum dolor esse sit incididunt velit eiusmod magna ad nostrud officia aute dolor dolor. Magna esse ullamco pariatur adipisicing consectetur eu commodo officia. Ex cillum consequat mollit minim elit est deserunt occaecat nisi amet. Quis aliqua nostrud Lorem occaecat sunt. Eiusmod quis amet ullamco aliquip dolore ut incididunt duis adipisicing. Elit consequat nisi eiusmod aute ipsum sunt veniam do est. Occaecat mollit aliquip ut proident consectetur amet ex dolore consectetur aliqua elit.
-          </p>
-          <p>
-            Commodo nisi non consectetur voluptate incididunt mollit duis dolore amet amet tempor exercitation. Qui amet aute ea aute id ad aliquip proident. Irure duis qui labore deserunt enim in quis nisi sint consequat aliqua. Ex proident labore et laborum tempor fugiat sint magna veniam minim. Nulla dolor labore adipisicing in enim mollit laboris fugiat eu. Aliquip minim cillum ullamco voluptate non dolore non ex duis fugiat duis ad. Deserunt cillum ad et nisi amet non voluptate culpa qui do. Labore ullamco et minim proident est laborum mollit ad labore deserunt ut irure dolore. Reprehenderit ad ad irure ut irure qui est eu velit eu excepteur adipisicing culpa. Laborum cupidatat ullamco eu duis anim reprehenderit proident aute ad consectetur eiusmod.
-          </p>
-          <p>
-            Cillum dolor esse sit incididunt velit eiusmod magna ad nostrud officia aute dolor dolor. Magna esse ullamco pariatur adipisicing consectetur eu commodo officia. Ex cillum consequat mollit minim elit est deserunt occaecat nisi amet. Quis aliqua nostrud Lorem occaecat sunt. Eiusmod quis amet ullamco aliquip dolore ut incididunt duis adipisicing. Elit consequat nisi eiusmod aute ipsum sunt veniam do est. Occaecat mollit aliquip ut proident consectetur amet ex dolore consectetur aliqua elit.
-          </p>
-          <p>
-            Commodo nisi non consectetur voluptate incididunt mollit duis dolore amet amet tempor exercitation. Qui amet aute ea aute id ad aliquip proident. Irure duis qui labore deserunt enim in quis nisi sint consequat aliqua. Ex proident labore et laborum tempor fugiat sint magna veniam minim. Nulla dolor labore adipisicing in enim mollit laboris fugiat eu. Aliquip minim cillum ullamco voluptate non dolore non ex duis fugiat duis ad. Deserunt cillum ad et nisi amet non voluptate culpa qui do. Labore ullamco et minim proident est laborum mollit ad labore deserunt ut irure dolore. Reprehenderit ad ad irure ut irure qui est eu velit eu excepteur adipisicing culpa. Laborum cupidatat ullamco eu duis anim reprehenderit proident aute ad consectetur eiusmod.
-          </p>
-          <p>
-            Cillum dolor esse sit incididunt velit eiusmod magna ad nostrud officia aute dolor dolor. Magna esse ullamco pariatur adipisicing consectetur eu commodo officia. Ex cillum consequat mollit minim elit est deserunt occaecat nisi amet. Quis aliqua nostrud Lorem occaecat sunt. Eiusmod quis amet ullamco aliquip dolore ut incididunt duis adipisicing. Elit consequat nisi eiusmod aute ipsum sunt veniam do est. Occaecat mollit aliquip ut proident consectetur amet ex dolore consectetur aliqua elit.
-          </p>
-          <p>
-            Commodo nisi non consectetur voluptate incididunt mollit duis dolore amet amet tempor exercitation. Qui amet aute ea aute id ad aliquip proident. Irure duis qui labore deserunt enim in quis nisi sint consequat aliqua. Ex proident labore et laborum tempor fugiat sint magna veniam minim. Nulla dolor labore adipisicing in enim mollit laboris fugiat eu. Aliquip minim cillum ullamco voluptate non dolore non ex duis fugiat duis ad. Deserunt cillum ad et nisi amet non voluptate culpa qui do. Labore ullamco et minim proident est laborum mollit ad labore deserunt ut irure dolore. Reprehenderit ad ad irure ut irure qui est eu velit eu excepteur adipisicing culpa. Laborum cupidatat ullamco eu duis anim reprehenderit proident aute ad consectetur eiusmod.
-          </p>
-          <p>
-            Cillum dolor esse sit incididunt velit eiusmod magna ad nostrud officia aute dolor dolor. Magna esse ullamco pariatur adipisicing consectetur eu commodo officia. Ex cillum consequat mollit minim elit est deserunt occaecat nisi amet. Quis aliqua nostrud Lorem occaecat sunt. Eiusmod quis amet ullamco aliquip dolore ut incididunt duis adipisicing. Elit consequat nisi eiusmod aute ipsum sunt veniam do est. Occaecat mollit aliquip ut proident consectetur amet ex dolore consectetur aliqua elit.
-          </p>
-          <p>
-            Commodo nisi non consectetur voluptate incididunt mollit duis dolore amet amet tempor exercitation. Qui amet aute ea aute id ad aliquip proident. Irure duis qui labore deserunt enim in quis nisi sint consequat aliqua. Ex proident labore et laborum tempor fugiat sint magna veniam minim. Nulla dolor labore adipisicing in enim mollit laboris fugiat eu. Aliquip minim cillum ullamco voluptate non dolore non ex duis fugiat duis ad. Deserunt cillum ad et nisi amet non voluptate culpa qui do. Labore ullamco et minim proident est laborum mollit ad labore deserunt ut irure dolore. Reprehenderit ad ad irure ut irure qui est eu velit eu excepteur adipisicing culpa. Laborum cupidatat ullamco eu duis anim reprehenderit proident aute ad consectetur eiusmod.
-          </p>
-        </div>
-      </div>
-      <footer class="demo-footer mdl-mini-footer">
-        <div class="mdl-mini-footer--left-section">
-          <ul class="mdl-mini-footer--link-list">
-            <li><a href="#">Help</a></li>
-            <li><a href="#">Privacy and Terms</a></li>
-            <li><a href="#">User Agreement</a></li>
-          </ul>
-        </div>
-      </footer>
-    </main>
-  </div>
-    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
-    <!-- build:js scripts/main.min.js -->
-    <script src="scripts/main.js"></script>
-    <!-- endbuild -->
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-XXXXX-X', 'auto');
-      ga('send', 'pageview');
-    </script>
-    <!-- Built with love using Web Starter Kit -->
-  </body>
+        <script
+            src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"
+        ></script>
+        <script src="js/main.js"></script>
+        <script src="js/slick.min.js"></script>
+    </body>
 </html>

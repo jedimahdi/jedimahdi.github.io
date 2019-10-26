@@ -1,0 +1,34 @@
+@use 'base';
+
+#comments {
+    margin-top: 2em;
+
+    .comments-title {
+        font-size: 2em;
+        margin-bottom: 2em;
+    }
+    .comment {
+        p {
+            text-align: center;
+            width: 70%;
+
+            @media screen and (max-width: base.$md_screen *1px) {
+                text-align: left;
+            }
+        }
+        .comment-info {
+            outline: none;
+
+            @media screen and (min-width: base.$md_screen *1px) {
+                display: flex;
+                flex-flow: column;
+                align-items: center;
+            }
+        }
+        .comment-image {
+            width: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+    }
+}
