@@ -56,81 +56,86 @@
                 </section>
 
                 <section id="comments" class="container">
-                    <h3 class="comments-title">Customers oppunion</h3>
+                    <h3 class="section-title">Customers oppunion</h3>
 
-                    <div class="slick">
-                        <div class="comment">
+                    <div class="all-comments">
+                        <div class="comment" id="Adidas">
                             <div class="comment-info">
                                 <img
                                     class="comment-image"
-                                    src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
+                                    src="https://cdn2.bigcommerce.com/server1500/ac84d/products/1204/images/2688/Adidas_Logo_Flower__83153.1337144903.380.380.jpg?c=2"
                                     alt="profile picture"
                                 />
                                 <h4>
-                                    Babak Zanjani
+                                    Adidas
                                 </h4>
-                                <small>Iranian wolf of wall street</small>
+                                <small>Design company</small>
 
                                 <p>
-                                    "Yes, design systems will replace many
-                                    design jobs as we know them today they
-                                    already have. Interface development
-                                    patterns, processes and tools are like
-                                    interchangable parts and factory assembly
-                                    lines - tools of industrial"
+                                    Adidas AG is a multinational corporation,
+                                    founded and headquartered in Herzogenaurach,
+                                    Germany, that designs and manufactures
+                                    shoes, clothing and accessories. It is the
+                                    largest sportswear manufacturer in Europe,
+                                    and the second largest in the world, after
+                                    Nike.
                                 </p>
                             </div>
                         </div>
 
-                        <div class="comment">
+                        <div class="comment" id="NB">
                             <div class="comment-info">
                                 <img
                                     class="comment-image"
-                                    src="https://semantic-ui.com/images/avatar2/large/elyse.png"
+                                    src="https://previews.123rf.com/images/twindesigner/twindesigner1705/twindesigner170500586/77513304-nb-n-b-letter-logo-with-broken-shattered-blue-pink-triangles-texture-design-vector-illustration-.jpg"
                                     alt="profile picture"
                                 />
-                                <h4>Babak Zanjani</h4>
-                                <small>Iranian wolf of wall street</small>
+                                <h4>New Balance</h4>
+                                <small>Footwear manufacturing company</small>
 
                                 <p>
-                                    "Yes, design systems will replace many
-                                    design jobs as we know them today they
-                                    already have. Interface development
-                                    patterns, processes and tools are like
-                                    interchangable parts and factory assembly
-                                    lines - tools of industrial"
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="comment">
-                            <div class="comment-info">
-                                <img
-                                    class="comment-image"
-                                    src="https://semantic-ui.com/images/avatar2/large/kristy.png"
-                                    alt="profile picture"
-                                />
-                                <h4>Babak Zanjani</h4>
-                                <small>Iranian wolf of wall street</small>
-
-                                <p>
-                                    "Yes, design systems will replace many
-                                    design jobs as we know them today they
-                                    already have. Interface development
-                                    patterns, processes and tools are like
-                                    interchangable parts and factory assembly
-                                    lines - tools of industrial"
+                                    New Balance Athletics, Inc., best known as
+                                    simply New Balance, is an American
+                                    multinational corporation based in the
+                                    Boston, Massachusetts area. The company was
+                                    founded in 1906 as the "New Balance Arch
+                                    Support Company" and is one of the world's
+                                    major sports footwear and apparel
+                                    manufacturers.
                                 </p>
                             </div>
                         </div>
                     </div>
+
+                    <div class="customers">
+                        <img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Adidas_Logo.svg/1200px-Adidas_Logo.svg.png"
+                            alt="company"
+                            onclick="openComment('Adidas', this)"
+                            class="tablink"
+                            id="defaultComment"
+                        />
+                        <img
+                            src="https://pngimage.net/wp-content/uploads/2018/06/logo-nb-png-4.png"
+                            alt="company"
+                            onclick="openComment('NB', this)"
+                            class="tablink"
+                        />
+                    </div>
+
+                    <div class="section-footer">How it works</div>
                 </section>
 
                 <section id="progress" class="container">
-                    <h3>How it works</h3>
+                    <h3 class="section-title">How it works</h3>
                     <div class="slick">
                         <div class="process">
-                            <div class="animation"></div>
+                            <div class="animation">
+                                <img
+                                    src="https://coderseye.com/wp-content/uploads/Putting-it-into-Code-and-how-it-works-Copy.png"
+                                    alt=""
+                                />
+                            </div>
                             <h4>It starts with an Idea.</h4>
                             <p>
                                 "Yes, design systems will replace many design
@@ -138,8 +143,132 @@
                             </p>
                         </div>
                     </div>
+
+                    <div class="section-footer">Technologies</div>
+                </section>
+
+                <section id="technologies" class="container">
+                    <h3 class="section-title">Technologies</h3>
+                    <div class="tech">
+                        <img
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNaoZ4xexBmLQboD4oMeEn-coWmOBXVGgnlsQAxmS8rwi2zhyb&s"
+                            alt=""
+                        />
+                        <h4>Design department</h4>
+                        <p>
+                            Yes, design systems will replace many design jobs as
+                            we know them today they already have.
+                            <a href="#">Read More</a>
+                        </p>
+                    </div>
+
+                    <div class="section-footer">About</div>
+                </section>
+
+                <section id="about" class="container">
+                    <h3 class="section-title">About us</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Eum, asperiores consectetur quisquam necessitatibus
+                        aspernatur dolorum perferendis eaque. Commodi
+                        praesentium dolor reprehenderit, hic accusantium libero
+                        voluptatum id maxime, nam ullam harum? Lorem ipsum dolor
+                        sit amet consectetur adipisicing elit. Adipisci numquam
+                        libero ab nisi amet totam unde magni. Molestias sed,
+                        dolore libero omnis praesentium rerum ut natus suscipit
+                        iure? Voluptatem, minima.
+                    </p>
+                    <a href="#">Read More</a>
+
+                    <div class="team">
+                        <div class="member">
+                            <h5>Aren</h5>
+                            <small>Creative Director</small>
+                            <img
+                                src="https://cdn.xy.company/img/team/arie_trouw.jpg"
+                                alt="member"
+                            />
+                        </div>
+
+                        <div class="member">
+                            <h5>Fatemeh</h5>
+                            <small>Artist</small>
+                            <img
+                                src="https://messari.s3.amazonaws.com/images/agora-images/markus_levin.jpg?v=2019-09-27"
+                                alt="member"
+                            />
+                        </div>
+
+                        <div class="member">
+                            <h5>Mahdi</h5>
+                            <small>Programmer</small>
+                            <img
+                                src="https://messari.s3.amazonaws.com/images/agora-images/scott_scheper.jpg"
+                                alt="member"
+                            />
+                        </div>
+
+                        <div class="member">
+                            <h5>Aren</h5>
+                            <small>Creative Director</small>
+                            <img
+                                src="https://messari.s3.amazonaws.com/images/agora-images/naim_abdullah.jpg"
+                                alt="member"
+                            />
+                        </div>
+                    </div>
                 </section>
             </main>
+
+            <footer id="footer" class="container">
+                <h3 class="section-title">Subscribe us</h3>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Eum, officiis maiores. Tempore quos eveniet aspernatur
+                    quisquam dolore, iusto fugit dolor ex vel veritatis, ea cum?
+                    Tempore ea est consequuntur et.
+                </p>
+
+                <form action="">
+                    <input
+                        type="text"
+                        class="email-input"
+                        placeholder="Enter your mail here"
+                    />
+                    <button class="subscribe-button">Subscribe</button>
+                </form>
+
+                <div class="social-media">
+                    Follow us in social media:
+                    <div class="links">
+                        <a href="#"
+                            ><i
+                                class="fa fa-facebook-square"
+                                aria-hidden="true"
+                            ></i
+                        ></a>
+                        <a href="#"
+                            ><i class="fa fa-twitter" aria-hidden="true"></i
+                        ></a>
+                        <a href="#"
+                            ><i class="fa fa-instagram" aria-hidden="true"></i
+                        ></a>
+                    </div>
+                </div>
+
+                <div class="footer-menu">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Portofilo</a></li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#" id="hire-link-footer">Hire Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="copyright">
+                    &copy; 2019 Salco, Inc. All rights reserved.
+                </div>
+            </footer>
         </div>
 
         <script

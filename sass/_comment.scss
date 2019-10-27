@@ -3,10 +3,6 @@
 #comments {
     margin-top: 2em;
 
-    .comments-title {
-        font-size: 2em;
-        margin-bottom: 2em;
-    }
     .comment {
         p {
             text-align: center;
@@ -29,6 +25,21 @@
             width: 100px;
             border-radius: 50%;
             margin-bottom: 10px;
+        }
+    }
+
+    .customers {
+        display: flex;
+        height: 40px;
+        img {
+            width: 50px;
+            display: block;
+            margin-right: 10px;
+            cursor: pointer;
+
+            &:hover {
+                opacity: 0.6 !important;
+            }
         }
     }
 }

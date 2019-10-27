@@ -14,7 +14,8 @@ h1,
 ul,
 h2,
 h3,
-h4 {
+h4,
+h5 {
   margin: 0;
   padding: 0;
 }
@@ -36,6 +37,18 @@ a {
 
 li {
   list-style: none;
+}
+
+.section-footer {
+  color: #000;
+  opacity: 0.5;
+  font-size: 1.3em;
+  margin-top: 3em;
+}
+
+.section-title {
+  font-size: 2em;
+  margin-bottom: 1em;
 }
 
 header {
@@ -152,7 +165,7 @@ header .recent-works {
   width: 580px;
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center center;
 }
 #projects .project:nth-child(1) {
   background-image: url("https://images.unsplash.com/photo-1571854712903-bba2675d322d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80");
@@ -169,10 +182,6 @@ header .recent-works {
 
 #comments {
   margin-top: 2em;
-}
-#comments .comments-title {
-  font-size: 2em;
-  margin-bottom: 2em;
 }
 #comments .comment p {
   text-align: center;
@@ -197,6 +206,103 @@ header .recent-works {
   width: 100px;
   border-radius: 50%;
   margin-bottom: 10px;
+}
+#comments .customers {
+  display: flex;
+  height: 40px;
+}
+#comments .customers img {
+  width: 50px;
+  display: block;
+  margin-right: 10px;
+  cursor: pointer;
+}
+#comments .customers img:hover {
+  opacity: 0.6 !important;
+}
+
+#progress {
+  margin-top: 4em;
+}
+
+#technologies {
+  margin-top: 2em;
+}
+
+#about {
+  margin-top: 2em;
+}
+#about .team {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 2em;
+}
+#about .team .member {
+  display: flex;
+  flex-flow: column;
+  margin: 0 auto;
+}
+#about .team .member img {
+  width: 150px;
+}
+
+#footer {
+  margin-top: 2em;
+}
+#footer form {
+  margin-top: 2em;
+}
+#footer form .email-input {
+  display: block;
+  width: 100%;
+  border: 0;
+  background-color: #eee;
+  padding: 10px;
+  text-align: center;
+  box-sizing: border-box;
+}
+#footer form .subscribe-button {
+  text-align: center;
+  border: 0;
+  background-color: mediumblue;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  color: #fff;
+  margin-top: 20px;
+}
+#footer .social-media {
+  margin-top: 2em;
+}
+#footer .social-media .links a {
+  color: #000;
+  opacity: 0.5;
+  font-size: 1.3em;
+  margin-right: 20px;
+}
+#footer .social-media .links a:hover {
+  opacity: 0.8;
+}
+#footer .footer-menu {
+  margin-top: 6em;
+}
+#footer .footer-menu ul {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+#footer .footer-menu ul a {
+  color: #000;
+}
+#footer .footer-menu ul a:hover {
+  opacity: 0.8;
+}
+#footer .footer-menu ul #hire-link-footer {
+  color: mediumblue;
+}
+#footer .copyright {
+  margin: 20px 10px;
 }
 
 /* Slider */
