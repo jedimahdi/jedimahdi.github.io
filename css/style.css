@@ -190,6 +190,11 @@ a:hover:hover {
   max-width: 80%;
   margin: 0 auto;
 }
+@media only screen and (max-width: 500px) {
+  .container {
+    max-width: 90%;
+  }
+}
 
 header {
   margin-top: 20px;
