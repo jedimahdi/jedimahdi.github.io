@@ -6,7 +6,7 @@ date=2022-07-24
 
 Shell is a program that takes commands from the keyboard and gives them to operating system to perform. by building a shell you can better understand how the shell, terminal emulator and OS work together.
 
-## Start 2
+## Start
 
 The simplest possible shell in haskell is only two lines of code.
 `getLine` function blocks until user presses enter key and it returns the entire user input. Here we take it and name it as line. then on second line `callProcess` function from process library calls.
