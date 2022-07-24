@@ -1,0 +1,236 @@
+<!DOCTYPE HTML>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="Mahdi Seyedan"><title>Build your own shell using Haskell - Getting started</title><link rel="icon" href="../favicon.ico"><link rel="stylesheet" type="text/css" href="../css/theme.css"><link rel="stylesheet" type="text/css" href="../css/style.css"><link rel="stylesheet" type="text/css" href="../css/syntax.css"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&amp;family=Open+Sans&amp;display=swap"></head><body><div class="container"><header><nav><a href="../index.html">Home</a><a href="https://github.com/jedimahdi/">Github</a><a href="https://twitter.com/jedimahdi">Twitter</a></nav></header><div class="wrapper"><div class="content"><article class="post"><h1 class="title">Build your own shell using Haskell - Getting started</h1><p>Shell is a program that takes commands from the keyboard and gives them to operating system to perform. by building a shell you can better understand how the shell, terminal emulator and OS work together.</p>
+<h2>Start 2</h2>
+<p>The simplest possible shell in haskell is only two lines of code.<br />
+<code>getLine</code> function blocks until user presses enter key and it returns the entire user input. Here we take it and name it as line. then on second line <code>callProcess</code> function from process library calls.</p>
+<div class="sourceCode"><pre class="sourceCode"><code class="sourceCode"><span id="1"><a href="#1" tabindex="-1"></a><span class="ot">main ::</span> <span class="dt">IO</span> ()</span>
+<span id="2"><a href="#2" tabindex="-1"></a>main <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="3"><a href="#3" tabindex="-1"></a>  line <span class="ot">&lt;-</span> <span class="fu">getLine</span></span>
+<span id="4"><a href="#4" tabindex="-1"></a>  callProcess line []</span></code></pre></div>
+<p>After running you can see terminal waiting for your input.<br />
+try typing ls and pressing enter, and you will see result of ls command print out and the shell exits.</p>
+<h2>Accepting Multiple Commands</h2>
+<p>We don’t want our shell to exit after the user enters a single command. we can continue asking for input and running the command by recursivly calling same function again.</p>
+<div class="sourceCode"><pre class="sourceCode"><code class="sourceCode"><span id="1"><a href="#1" tabindex="-1"></a><span class="ot">main ::</span> <span class="dt">IO</span> ()</span>
+<span id="2"><a href="#2" tabindex="-1"></a>main <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="3"><a href="#3" tabindex="-1"></a>  line <span class="ot">&lt;-</span> <span class="fu">getLine</span></span>
+<span id="4"><a href="#4" tabindex="-1"></a>  callProcess line []</span>
+<span id="5"><a href="#5" tabindex="-1"></a>  main</span></code></pre></div>
+<p>and add a prompt.</p>
+<div class="sourceCode"><pre class="sourceCode"><code class="sourceCode"><span id="1"><a href="#1" tabindex="-1"></a><span class="ot">main ::</span> <span class="dt">IO</span> ()</span>
+<span id="2"><a href="#2" tabindex="-1"></a>main <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="3"><a href="#3" tabindex="-1"></a>  <span class="fu">putStr</span> <span class="st">&quot;&gt; &quot;</span></span>
+<span id="4"><a href="#4" tabindex="-1"></a>  hFlush stdout</span>
+<span id="5"><a href="#5" tabindex="-1"></a>  line <span class="ot">&lt;-</span> <span class="fu">getLine</span></span>
+<span id="6"><a href="#6" tabindex="-1"></a>  callProcess line []</span>
+<span id="7"><a href="#7" tabindex="-1"></a>  main</span></code></pre></div>
+<p>or another way that is more obvious that we&#39;re looping using another local function called go or loop</p>
+<div class="sourceCode"><pre class="sourceCode"><code class="sourceCode"><span id="1"><a href="#1" tabindex="-1"></a><span class="ot">main ::</span> <span class="dt">IO</span> ()</span>
+<span id="2"><a href="#2" tabindex="-1"></a>main <span class="ot">=</span> loop</span>
+<span id="3"><a href="#3" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="4"><a href="#4" tabindex="-1"></a><span class="ot">    loop ::</span> <span class="dt">IO</span> ()</span>
+<span id="5"><a href="#5" tabindex="-1"></a>    loop <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="6"><a href="#6" tabindex="-1"></a>      <span class="fu">putStr</span> <span class="st">&quot;&gt; &quot;</span></span>
+<span id="7"><a href="#7" tabindex="-1"></a>      hFlush stdout</span>
+<span id="8"><a href="#8" tabindex="-1"></a>      line <span class="ot">&lt;-</span> <span class="fu">getLine</span></span>
+<span id="9"><a href="#9" tabindex="-1"></a>      callProcess line []</span>
+<span id="10"><a href="#10" tabindex="-1"></a>      loop</span></code></pre></div>
+<p>or we can use <code>forever</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode"><code class="sourceCode"><span id="1"><a href="#1" tabindex="-1"></a><span class="ot">main ::</span> <span class="dt">IO</span> ()</span>
+<span id="2"><a href="#2" tabindex="-1"></a>main <span class="ot">=</span> forever <span class="op">$</span> <span class="kw">do</span></span>
+<span id="3"><a href="#3" tabindex="-1"></a>  <span class="fu">putStr</span> <span class="st">&quot;&gt; &quot;</span></span>
+<span id="4"><a href="#4" tabindex="-1"></a>  hFlush stdout</span>
+<span id="5"><a href="#5" tabindex="-1"></a>  line <span class="ot">&lt;-</span> <span class="fu">getLine</span></span>
+<span id="6"><a href="#6" tabindex="-1"></a>  callProcess line []</span></code></pre></div>
+<p>try it with commands like <code>ls</code> and <code>pwd</code>.</p>
+<p><code>hFlush</code> makes sure that stdout before that is printed before waiting for user input.</p>
+<h2>Handling Args</h2>
+<p>Our program till now accepts commands but cant handle args to the commands. for example if you run command <code>ls -a</code>, it will crash.</p>
+<div class="sourceCode"><pre class="sourceCode"><code class="sourceCode"><span id="1"><a href="#1" tabindex="-1"></a><span class="ot">loop ::</span> <span class="dt">IO</span> ()</span>
+<span id="2"><a href="#2" tabindex="-1"></a>loop <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="3"><a href="#3" tabindex="-1"></a>  <span class="fu">putStr</span> <span class="st">&quot;&gt; &quot;</span></span>
+<span id="4"><a href="#4" tabindex="-1"></a>  hFlush stdout</span>
+<span id="5"><a href="#5" tabindex="-1"></a>  line <span class="ot">&lt;-</span> <span class="fu">getLine</span></span>
+<span id="6"><a href="#6" tabindex="-1"></a>  <span class="kw">let</span> parts <span class="ot">=</span> <span class="fu">words</span> line</span>
+<span id="7"><a href="#7" tabindex="-1"></a>  <span class="kw">let</span> command <span class="ot">=</span> <span class="fu">head</span> parts</span>
+<span id="8"><a href="#8" tabindex="-1"></a>  <span class="kw">let</span> args <span class="ot">=</span> <span class="fu">tail</span> parts</span>
+<span id="9"><a href="#9" tabindex="-1"></a>  callProcess command args</span>
+<span id="10"><a href="#10" tabindex="-1"></a>  loop</span></code></pre></div>
+<h2>Shell Built-ins</h2>
+<p>There are certain commands you can&#39;t just dispatch to another process. <code>cd</code> command is a example of that (check out <a href="https://unix.stackexchange.com/questions/38808/why-is-cd-not-a-program/38809#38809">this link</a> to see why cd is not another process).</p>
+<div class="sourceCode"><pre class="sourceCode"><code class="sourceCode"><span id="1"><a href="#1" tabindex="-1"></a><span class="co">-- snip</span></span>
+<span id="2"><a href="#2" tabindex="-1"></a><span class="kw">let</span> args <span class="ot">=</span> <span class="fu">tail</span> parts</span>
+<span id="3"><a href="#3" tabindex="-1"></a></span>
+<span id="4"><a href="#4" tabindex="-1"></a><span class="kw">case</span> command <span class="kw">of</span></span>
+<span id="5"><a href="#5" tabindex="-1"></a>  <span class="st">&quot;cd&quot;</span> <span class="ot">-&gt;</span> <span class="kw">do</span></span>
+<span id="6"><a href="#6" tabindex="-1"></a>    path <span class="ot">&lt;-</span> <span class="kw">case</span> args <span class="kw">of</span></span>
+<span id="7"><a href="#7" tabindex="-1"></a>      []         <span class="ot">-&gt;</span> getHomeDirectory</span>
+<span id="8"><a href="#8" tabindex="-1"></a>      (path <span class="op">:</span> _) <span class="ot">-&gt;</span> <span class="fu">pure</span> path</span>
+<span id="9"><a href="#9" tabindex="-1"></a></span>
+<span id="10"><a href="#10" tabindex="-1"></a>    setCurrentDirectory path</span>
+<span id="11"><a href="#11" tabindex="-1"></a>  _ <span class="ot">-&gt;</span> <span class="kw">do</span></span>
+<span id="12"><a href="#12" tabindex="-1"></a>    callProcess command args</span>
+<span id="13"><a href="#13" tabindex="-1"></a>loop</span></code></pre></div>
+<h2>Refactor and error handling</h2>
+<p>Let&#39;s refactor the code base a little bit. There are three things that main function does.</p>
+<ul>
+<li>show prompt and get input</li>
+<li>parse the input</li>
+<li>run the action</li>
+</ul>
+<p>I&#39;m gonna take out each functionaliy from loop and make a new function for it and add new data type for parsed action.</p>
+<div class="sourceCode"><pre class="sourceCode"><code class="sourceCode"><span id="1"><a href="#1" tabindex="-1"></a><span class="ot">prompt ::</span> <span class="dt">IO</span> <span class="dt">Text</span></span>
+<span id="2"><a href="#2" tabindex="-1"></a>prompt <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="3"><a href="#3" tabindex="-1"></a>  TIO.putStr <span class="st">&quot;&gt; &quot;</span></span>
+<span id="4"><a href="#4" tabindex="-1"></a>  hFlush stdout</span>
+<span id="5"><a href="#5" tabindex="-1"></a>  TIO.getLine</span>
+<span id="6"><a href="#6" tabindex="-1"></a></span>
+<span id="7"><a href="#7" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Action</span> <span class="ot">=</span> <span class="dt">Command</span> <span class="dt">Text</span> [<span class="dt">Text</span>]</span>
+<span id="8"><a href="#8" tabindex="-1"></a></span>
+<span id="9"><a href="#9" tabindex="-1"></a><span class="ot">parseCommand ::</span> <span class="dt">Text</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Action</span></span>
+<span id="10"><a href="#10" tabindex="-1"></a>parseCommand line</span>
+<span id="11"><a href="#11" tabindex="-1"></a>  <span class="ot">=</span> <span class="kw">case</span> T.words line <span class="kw">of</span></span>
+<span id="12"><a href="#12" tabindex="-1"></a>     []           <span class="ot">-&gt;</span> <span class="dt">Nothing</span></span>
+<span id="13"><a href="#13" tabindex="-1"></a>     (cmd <span class="op">:</span> args) <span class="ot">-&gt;</span> <span class="dt">Just</span> <span class="op">$</span> <span class="dt">Command</span> cmd args</span>
+<span id="14"><a href="#14" tabindex="-1"></a></span>
+<span id="15"><a href="#15" tabindex="-1"></a><span class="ot">runAction ::</span> <span class="dt">Action</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> ()</span>
+<span id="16"><a href="#16" tabindex="-1"></a>runAction (<span class="dt">Command</span> cmd args) <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="17"><a href="#17" tabindex="-1"></a>  <span class="kw">case</span> cmd <span class="kw">of</span></span>
+<span id="18"><a href="#18" tabindex="-1"></a>    <span class="st">&quot;cd&quot;</span> <span class="ot">-&gt;</span> <span class="kw">do</span></span>
+<span id="19"><a href="#19" tabindex="-1"></a>      path <span class="ot">&lt;-</span> <span class="kw">case</span> args <span class="kw">of</span></span>
+<span id="20"><a href="#20" tabindex="-1"></a>        []         <span class="ot">-&gt;</span> getHomeDirectory</span>
+<span id="21"><a href="#21" tabindex="-1"></a>        (path <span class="op">:</span> _) <span class="ot">-&gt;</span> <span class="fu">pure</span> path</span>
+<span id="22"><a href="#22" tabindex="-1"></a>      setCurrentDirectory path</span>
+<span id="23"><a href="#23" tabindex="-1"></a>    _ <span class="ot">-&gt;</span> callProcess cmd args</span>
+<span id="24"><a href="#24" tabindex="-1"></a></span>
+<span id="25"><a href="#25" tabindex="-1"></a><span class="ot">main ::</span> <span class="dt">IO</span> ()</span>
+<span id="26"><a href="#26" tabindex="-1"></a>main <span class="ot">=</span> forever <span class="op">$</span> <span class="kw">do</span></span>
+<span id="27"><a href="#27" tabindex="-1"></a>  line <span class="ot">&lt;-</span> prompt</span>
+<span id="28"><a href="#28" tabindex="-1"></a>  <span class="kw">case</span> parseCommand line <span class="kw">of</span></span>
+<span id="29"><a href="#29" tabindex="-1"></a>    <span class="dt">Nothing</span> <span class="ot">-&gt;</span> hPutStrLn stderr <span class="st">&quot;parsing error&quot;</span></span>
+<span id="30"><a href="#30" tabindex="-1"></a>    <span class="dt">Just</span> action <span class="ot">-&gt;</span> runAction action <span class="ot">`catch`</span> \(<span class="ot">e ::</span> <span class="dt">SomeException</span>) <span class="ot">-&gt;</span> hPutStrLn stderr (<span class="fu">show</span> e)</span></code></pre></div>
+<p><code>catch</code> function catches any exception that runAction possibly can throw and prints it to stderr so that this loop never exits.</p>
+<h2>Adding pipes</h2>
+<p>It would be difficult to be productive in a shell which didn’t include pipes. If you aren’t familiar with this feature, the | character is used to tell the shell to redirect the output of the first command into the input of the second command. For example, running the command <code>ls | grep Cabal</code> triggers the following set of actions:</p>
+<ol>
+<li>ls will list all files in the current directory</li>
+<li>The shell will pipe the above list of files to grep</li>
+<li>grep will filter the list and output only files which contain the string Cabal</li>
+</ol>
+<p>For an introduction to many other things pipes and IO redirection can do, check out <a href="https://thoughtbot.com/blog/input-output-redirection-in-the-shell">this article</a>.</p>
+<div class="sourceCode"><pre class="sourceCode"><code class="sourceCode"><span id="1"><a href="#1" tabindex="-1"></a><span class="co">-- snip</span></span>
+<span id="2"><a href="#2" tabindex="-1"></a></span>
+<span id="3"><a href="#3" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Action</span></span>
+<span id="4"><a href="#4" tabindex="-1"></a>  <span class="ot">=</span> <span class="dt">Command</span> <span class="dt">Text</span> [<span class="dt">Text</span>]</span>
+<span id="5"><a href="#5" tabindex="-1"></a>  <span class="op">|</span> <span class="dt">Pipe</span> <span class="dt">Action</span> <span class="dt">Action</span></span>
+<span id="6"><a href="#6" tabindex="-1"></a></span>
+<span id="7"><a href="#7" tabindex="-1"></a><span class="ot">parseAction ::</span> <span class="dt">Text</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Action</span></span>
+<span id="8"><a href="#8" tabindex="-1"></a>parseAction line <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="9"><a href="#9" tabindex="-1"></a>  actions <span class="ot">&lt;-</span> <span class="fu">traverse</span> parseCommand <span class="op">.</span> T.splitOn <span class="st">&quot;|&quot;</span> <span class="op">$</span> line</span>
+<span id="10"><a href="#10" tabindex="-1"></a>  <span class="kw">case</span> actions <span class="kw">of</span></span>
+<span id="11"><a href="#11" tabindex="-1"></a>    []  <span class="ot">-&gt;</span> <span class="dt">Nothing</span></span>
+<span id="12"><a href="#12" tabindex="-1"></a>    [a] <span class="ot">-&gt;</span> <span class="fu">pure</span> a</span>
+<span id="13"><a href="#13" tabindex="-1"></a>    (a <span class="op">:</span> as) <span class="ot">-&gt;</span> <span class="kw">do</span></span>
+<span id="14"><a href="#14" tabindex="-1"></a>      <span class="fu">pure</span> <span class="op">$</span> <span class="fu">foldl</span> <span class="dt">Pipe</span> a as</span>
+<span id="15"><a href="#15" tabindex="-1"></a></span>
+<span id="16"><a href="#16" tabindex="-1"></a><span class="ot">runAction ::</span> <span class="dt">Handle</span> <span class="ot">-&gt;</span> <span class="dt">Handle</span> <span class="ot">-&gt;</span> <span class="dt">Action</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> ()</span>
+<span id="17"><a href="#17" tabindex="-1"></a>runAction input output (<span class="dt">Command</span> cmd args) <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="18"><a href="#18" tabindex="-1"></a>  <span class="kw">case</span> cmd <span class="kw">of</span></span>
+<span id="19"><a href="#19" tabindex="-1"></a>    <span class="st">&quot;cd&quot;</span> <span class="ot">-&gt;</span> <span class="kw">do</span></span>
+<span id="20"><a href="#20" tabindex="-1"></a>      path <span class="ot">&lt;-</span> <span class="kw">case</span> args <span class="kw">of</span></span>
+<span id="21"><a href="#21" tabindex="-1"></a>        []         <span class="ot">-&gt;</span> getHomeDirectory</span>
+<span id="22"><a href="#22" tabindex="-1"></a>        (path <span class="op">:</span> _) <span class="ot">-&gt;</span> <span class="fu">pure</span> (T.unpack path)</span>
+<span id="23"><a href="#23" tabindex="-1"></a>      setCurrentDirectory path</span>
+<span id="24"><a href="#24" tabindex="-1"></a>    _ <span class="ot">-&gt;</span> <span class="kw">do</span></span>
+<span id="25"><a href="#25" tabindex="-1"></a>      <span class="co">-- Create new CreateProcess with stdin and stdout handles from arguments</span></span>
+<span id="26"><a href="#26" tabindex="-1"></a>      <span class="kw">let</span> process <span class="ot">=</span> (P.proc (T.unpack cmd) (<span class="fu">map</span> T.unpack args)) { std_out <span class="ot">=</span> <span class="dt">UseHandle</span> output, std_in <span class="ot">=</span> <span class="dt">UseHandle</span> input }</span>
+<span id="27"><a href="#27" tabindex="-1"></a>      (_, _, _, h) <span class="ot">&lt;-</span> createProcess process</span>
+<span id="28"><a href="#28" tabindex="-1"></a>      exitCode <span class="ot">&lt;-</span> waitForProcess h</span>
+<span id="29"><a href="#29" tabindex="-1"></a>      <span class="fu">pure</span> ()</span>
+<span id="30"><a href="#30" tabindex="-1"></a></span>
+<span id="31"><a href="#31" tabindex="-1"></a>runAction input output (<span class="dt">Pipe</span> from to) <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="32"><a href="#32" tabindex="-1"></a>  (reader, writer) <span class="ot">&lt;-</span> createPipe</span>
+<span id="33"><a href="#33" tabindex="-1"></a>  <span class="co">-- runs first action with writer as stdout</span></span>
+<span id="34"><a href="#34" tabindex="-1"></a>  runAction input writer from</span>
+<span id="35"><a href="#35" tabindex="-1"></a>  <span class="co">-- runs second action with reader as stdin</span></span>
+<span id="36"><a href="#36" tabindex="-1"></a>  runAction reader output to</span>
+<span id="37"><a href="#37" tabindex="-1"></a></span>
+<span id="38"><a href="#38" tabindex="-1"></a><span class="ot">main ::</span> <span class="dt">IO</span> ()</span>
+<span id="39"><a href="#39" tabindex="-1"></a>main <span class="ot">=</span> forever <span class="op">$</span> <span class="kw">do</span></span>
+<span id="40"><a href="#40" tabindex="-1"></a>  line <span class="ot">&lt;-</span> prompt</span>
+<span id="41"><a href="#41" tabindex="-1"></a>  <span class="kw">case</span> parseCommand line <span class="kw">of</span></span>
+<span id="42"><a href="#42" tabindex="-1"></a>    <span class="dt">Nothing</span> <span class="ot">-&gt;</span> hPutStrLn stderr <span class="st">&quot;parsing error&quot;</span></span>
+<span id="43"><a href="#43" tabindex="-1"></a>    <span class="dt">Just</span> action <span class="ot">-&gt;</span> runAction stdin stdout action <span class="ot">`catch`</span></span>
+<span id="44"><a href="#44" tabindex="-1"></a>                      \(<span class="ot">e ::</span> <span class="dt">SomeException</span>) <span class="ot">-&gt;</span> hPutStrLn stderr (<span class="fu">show</span> e)</span></code></pre></div>
+<p><code>createPipe</code> is for interprocess communication, returns two handles one can be used to write (<code>writer</code>) and one to read (<code>reader</code>). Here I&#39;m using writer as handle of output of first program and reader as input of second program. By using <code>createPipe</code>, we can even run two actions concurrently.</p>
+<h2>Conclusion</h2>
+<p>This is whole program till here.</p>
+<div class="sourceCode"><pre class="sourceCode"><code class="sourceCode"><span id="1"><a href="#1" tabindex="-1"></a><span class="ot">{-# LANGUAGE OverloadedStrings #-}</span></span>
+<span id="2"><a href="#2" tabindex="-1"></a><span class="kw">module</span> <span class="dt">Main</span> <span class="kw">where</span></span>
+<span id="3"><a href="#3" tabindex="-1"></a></span>
+<span id="4"><a href="#4" tabindex="-1"></a><span class="kw">import</span>           <span class="dt">Control.Exception</span> ( <span class="dt">SomeException</span>, catch )</span>
+<span id="5"><a href="#5" tabindex="-1"></a><span class="kw">import</span>           <span class="dt">Control.Monad</span>     ( forever )</span>
+<span id="6"><a href="#6" tabindex="-1"></a><span class="kw">import</span>           <span class="dt">Data.Text</span>         ( <span class="dt">Text</span> )</span>
+<span id="7"><a href="#7" tabindex="-1"></a><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Data.Text</span>         <span class="kw">as</span> <span class="dt">T</span></span>
+<span id="8"><a href="#8" tabindex="-1"></a><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Data.Text.IO</span>      <span class="kw">as</span> <span class="dt">TIO</span></span>
+<span id="9"><a href="#9" tabindex="-1"></a><span class="kw">import</span>           <span class="dt">System.Directory</span>  ( getCurrentDirectory, getHomeDirectory, setCurrentDirectory )</span>
+<span id="10"><a href="#10" tabindex="-1"></a><span class="kw">import</span>           <span class="dt">System.IO</span>         ( <span class="dt">Handle</span>, hFlush, hPutStr, hPutStrLn, stderr, stdin, stdout )</span>
+<span id="11"><a href="#11" tabindex="-1"></a><span class="kw">import</span>           <span class="dt">System.Process</span></span>
+<span id="12"><a href="#12" tabindex="-1"></a>    ( <span class="dt">CreateProcess</span> (<span class="op">..</span>), <span class="dt">StdStream</span> (<span class="op">..</span>), createPipe, createProcess, waitForProcess )</span>
+<span id="13"><a href="#13" tabindex="-1"></a><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">System.Process</span>    <span class="kw">as</span> <span class="dt">P</span></span>
+<span id="14"><a href="#14" tabindex="-1"></a></span>
+<span id="15"><a href="#15" tabindex="-1"></a><span class="ot">prompt ::</span> <span class="dt">IO</span> <span class="dt">Text</span></span>
+<span id="16"><a href="#16" tabindex="-1"></a>prompt <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="17"><a href="#17" tabindex="-1"></a>  currDir <span class="ot">&lt;-</span> getCurrentDirectory</span>
+<span id="18"><a href="#18" tabindex="-1"></a>  <span class="fu">putStr</span> <span class="op">$</span> currDir <span class="op">&lt;&gt;</span> <span class="st">&quot; &gt; &quot;</span></span>
+<span id="19"><a href="#19" tabindex="-1"></a>  hFlush stdout</span>
+<span id="20"><a href="#20" tabindex="-1"></a>  TIO.getLine</span>
+<span id="21"><a href="#21" tabindex="-1"></a></span>
+<span id="22"><a href="#22" tabindex="-1"></a><span class="ot">parseCommand ::</span> <span class="dt">Text</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Action</span></span>
+<span id="23"><a href="#23" tabindex="-1"></a>parseCommand line</span>
+<span id="24"><a href="#24" tabindex="-1"></a>  <span class="ot">=</span> <span class="kw">case</span> T.words line <span class="kw">of</span></span>
+<span id="25"><a href="#25" tabindex="-1"></a>     []           <span class="ot">-&gt;</span> <span class="dt">Nothing</span></span>
+<span id="26"><a href="#26" tabindex="-1"></a>     (cmd <span class="op">:</span> args) <span class="ot">-&gt;</span> <span class="dt">Just</span> <span class="op">$</span> <span class="dt">Command</span> cmd args</span>
+<span id="27"><a href="#27" tabindex="-1"></a></span>
+<span id="28"><a href="#28" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Action</span></span>
+<span id="29"><a href="#29" tabindex="-1"></a>  <span class="ot">=</span> <span class="dt">Command</span> <span class="dt">Text</span> [<span class="dt">Text</span>]</span>
+<span id="30"><a href="#30" tabindex="-1"></a>  <span class="op">|</span> <span class="dt">Pipe</span> <span class="dt">Action</span> <span class="dt">Action</span></span>
+<span id="31"><a href="#31" tabindex="-1"></a></span>
+<span id="32"><a href="#32" tabindex="-1"></a><span class="ot">parseAction ::</span> <span class="dt">Text</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Action</span></span>
+<span id="33"><a href="#33" tabindex="-1"></a>parseAction line <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="34"><a href="#34" tabindex="-1"></a>  actions <span class="ot">&lt;-</span> <span class="fu">traverse</span> parseCommand <span class="op">.</span> T.splitOn <span class="st">&quot;|&quot;</span> <span class="op">$</span> line</span>
+<span id="35"><a href="#35" tabindex="-1"></a>  <span class="kw">case</span> actions <span class="kw">of</span></span>
+<span id="36"><a href="#36" tabindex="-1"></a>    []  <span class="ot">-&gt;</span> <span class="dt">Nothing</span></span>
+<span id="37"><a href="#37" tabindex="-1"></a>    [a] <span class="ot">-&gt;</span> <span class="fu">pure</span> a</span>
+<span id="38"><a href="#38" tabindex="-1"></a>    (a <span class="op">:</span> as) <span class="ot">-&gt;</span> <span class="kw">do</span></span>
+<span id="39"><a href="#39" tabindex="-1"></a>      <span class="fu">pure</span> <span class="op">$</span> <span class="fu">foldl</span> <span class="dt">Pipe</span> a as</span>
+<span id="40"><a href="#40" tabindex="-1"></a></span>
+<span id="41"><a href="#41" tabindex="-1"></a><span class="ot">runAction ::</span> <span class="dt">Handle</span> <span class="ot">-&gt;</span> <span class="dt">Handle</span> <span class="ot">-&gt;</span> <span class="dt">Action</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> ()</span>
+<span id="42"><a href="#42" tabindex="-1"></a>runAction input output (<span class="dt">Command</span> cmd args) <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="43"><a href="#43" tabindex="-1"></a>  <span class="kw">case</span> cmd <span class="kw">of</span></span>
+<span id="44"><a href="#44" tabindex="-1"></a>    <span class="st">&quot;cd&quot;</span> <span class="ot">-&gt;</span> <span class="kw">do</span></span>
+<span id="45"><a href="#45" tabindex="-1"></a>      path <span class="ot">&lt;-</span> <span class="kw">case</span> args <span class="kw">of</span></span>
+<span id="46"><a href="#46" tabindex="-1"></a>        []         <span class="ot">-&gt;</span> getHomeDirectory</span>
+<span id="47"><a href="#47" tabindex="-1"></a>        (path <span class="op">:</span> _) <span class="ot">-&gt;</span> <span class="fu">pure</span> (T.unpack path)</span>
+<span id="48"><a href="#48" tabindex="-1"></a>      setCurrentDirectory path</span>
+<span id="49"><a href="#49" tabindex="-1"></a>    _ <span class="ot">-&gt;</span> <span class="kw">do</span></span>
+<span id="50"><a href="#50" tabindex="-1"></a>      <span class="kw">let</span> process <span class="ot">=</span> (P.proc (T.unpack cmd) (<span class="fu">map</span> T.unpack args)) { std_out <span class="ot">=</span> <span class="dt">UseHandle</span> output, std_in <span class="ot">=</span> <span class="dt">UseHandle</span> input }</span>
+<span id="51"><a href="#51" tabindex="-1"></a>      (_, _, _, h) <span class="ot">&lt;-</span> createProcess process</span>
+<span id="52"><a href="#52" tabindex="-1"></a>      exitCode <span class="ot">&lt;-</span> waitForProcess h</span>
+<span id="53"><a href="#53" tabindex="-1"></a>      <span class="fu">pure</span> ()</span>
+<span id="54"><a href="#54" tabindex="-1"></a></span>
+<span id="55"><a href="#55" tabindex="-1"></a>runAction input output (<span class="dt">Pipe</span> from to) <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="56"><a href="#56" tabindex="-1"></a>  (reader, writer) <span class="ot">&lt;-</span> createPipe</span>
+<span id="57"><a href="#57" tabindex="-1"></a>  runAction input writer from</span>
+<span id="58"><a href="#58" tabindex="-1"></a>  runAction reader output to</span>
+<span id="59"><a href="#59" tabindex="-1"></a></span>
+<span id="60"><a href="#60" tabindex="-1"></a><span class="ot">main ::</span> <span class="dt">IO</span> ()</span>
+<span id="61"><a href="#61" tabindex="-1"></a>main <span class="ot">=</span> forever <span class="op">$</span> <span class="kw">do</span></span>
+<span id="62"><a href="#62" tabindex="-1"></a>  line <span class="ot">&lt;-</span> prompt</span>
+<span id="63"><a href="#63" tabindex="-1"></a>  <span class="kw">case</span> parseCommand line <span class="kw">of</span></span>
+<span id="64"><a href="#64" tabindex="-1"></a>    <span class="dt">Nothing</span> <span class="ot">-&gt;</span> hPutStrLn stderr <span class="st">&quot;parsing error&quot;</span></span>
+<span id="65"><a href="#65" tabindex="-1"></a>    <span class="dt">Just</span> action <span class="ot">-&gt;</span> runAction stdin stdout action <span class="ot">`catch`</span></span>
+<span id="66"><a href="#66" tabindex="-1"></a>                      \(<span class="ot">e ::</span> <span class="dt">SomeException</span>) <span class="ot">-&gt;</span> hPutStrLn stderr (<span class="fu">show</span> e)</span></code></pre></div>
+<p>Source code is available on github in <a href="https://github.com/jedimahdi/lazysh">this link</a>.</p>
+<p>Thanks to Josh Mcguigan for <a href="https://www.joshmcguigan.com/blog/build-your-own-shell-rust/">this blog post</a>.</p>
+</article></div></div></div></body></html>
