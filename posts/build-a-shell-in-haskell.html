@@ -1,5 +1,49 @@
 <!DOCTYPE HTML>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="Mahdi Seyedan"><title>Build your own shell using Haskell - Getting started</title><link rel="icon" href="../favicon.ico"><link rel="stylesheet" type="text/css" href="../css/theme.css"><link rel="stylesheet" type="text/css" href="../css/style.css"><link rel="stylesheet" type="text/css" href="../css/syntax.css"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&amp;family=Open+Sans&amp;display=swap"></head><body><div class="container"><header><nav><a href="../index.html">Home</a><a href="https://github.com/jedimahdi/">Github</a><a href="https://twitter.com/jedimahdi">Twitter</a></nav></header><div class="wrapper"><div class="content"><article class="post"><h1 class="title">Build your own shell using Haskell - Getting started</h1><p>Shell is a program that takes commands from the keyboard and gives them to operating system to perform. by building a shell you can better understand how the shell, terminal emulator and OS work together.</p>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="The Personal blog of Mahdi Seyedan">
+        <meta name="author" content="Mahdi Seyedan">
+        <title>
+            Build your own shell using Haskell - Getting started
+        </title>
+        <meta name="twitter:title" content="Build your own shell using Haskell - Getting started">
+        <meta name="twitter:creator" content="@jedimahdi">
+        <meta name="twitter:site" content="@jedimahdi">
+        <link rel="icon" href="../favicon.ico">
+        <link rel="stylesheet" type="text/css" href="../css/theme.css">
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link rel="stylesheet" type="text/css" href="../css/syntax.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&amp;family=Open+Sans&amp;display=swap">
+        <script>
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-WRT3GMF');
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <nav>
+                    <a href="../index.html">
+                        Home
+                    </a>
+                    <a href="https://github.com/jedimahdi/">
+                        Github
+                    </a>
+                    <a href="https://twitter.com/jedimahdi">
+                        Twitter
+                    </a>
+                </nav>
+            </header>
+            <div class="wrapper">
+                <div class="content">
+                    <article class="post">
+                        <h1 class="title">
+                            Build your own shell using Haskell - Getting started
+                        </h1>
+                        <p>Shell is a program that takes commands from the keyboard and gives them to operating system to perform. by building a shell you can better understand how the shell, terminal emulator and OS work together.</p>
 <h2>Start</h2>
 <p>The simplest possible shell in haskell is only two lines of code.<br />
 <code>getLine</code> function blocks until user presses enter key and it returns the entire user input. Here we take it and name it as line. then on second line <code>callProcess</code> function from process library calls.</p>
@@ -24,7 +68,7 @@ try typing ls and pressing enter, and you will see result of ls command print ou
 <span id="5"><a href="#5" tabindex="-1"></a>  line <span class="ot">&lt;-</span> <span class="fu">getLine</span></span>
 <span id="6"><a href="#6" tabindex="-1"></a>  callProcess line []</span>
 <span id="7"><a href="#7" tabindex="-1"></a>  main</span></code></pre></div>
-<p>or another way that is more obvious that we&#39;re looping using another local function called go or loop</p>
+<p>or another way that is more obvious that we're looping using another local function called go or loop</p>
 <div class="sourceCode"><pre class="sourceCode"><code class="sourceCode"><span id="1"><a href="#1" tabindex="-1"></a><span class="ot">main ::</span> <span class="dt">IO</span> ()</span>
 <span id="2"><a href="#2" tabindex="-1"></a>main <span class="ot">=</span> loop</span>
 <span id="3"><a href="#3" tabindex="-1"></a>  <span class="kw">where</span></span>
@@ -57,7 +101,7 @@ try typing ls and pressing enter, and you will see result of ls command print ou
 <span id="9"><a href="#9" tabindex="-1"></a>  callProcess command args</span>
 <span id="10"><a href="#10" tabindex="-1"></a>  loop</span></code></pre></div>
 <h2>Shell Built-ins</h2>
-<p>There are certain commands you can&#39;t just dispatch to another process. <code>cd</code> command is a example of that (check out <a href="https://unix.stackexchange.com/questions/38808/why-is-cd-not-a-program/38809#38809">this link</a> to see why cd is not another process).</p>
+<p>There are certain commands you can't just dispatch to another process. <code>cd</code> command is a example of that (check out <a href="https://unix.stackexchange.com/questions/38808/why-is-cd-not-a-program/38809#38809">this link</a> to see why cd is not another process).</p>
 <div class="sourceCode"><pre class="sourceCode"><code class="sourceCode"><span id="1"><a href="#1" tabindex="-1"></a><span class="co">-- snip</span></span>
 <span id="2"><a href="#2" tabindex="-1"></a><span class="kw">let</span> args <span class="ot">=</span> <span class="fu">tail</span> parts</span>
 <span id="3"><a href="#3" tabindex="-1"></a></span>
@@ -72,13 +116,13 @@ try typing ls and pressing enter, and you will see result of ls command print ou
 <span id="12"><a href="#12" tabindex="-1"></a>    callProcess command args</span>
 <span id="13"><a href="#13" tabindex="-1"></a>loop</span></code></pre></div>
 <h2>Refactor and error handling</h2>
-<p>Let&#39;s refactor the code base a little bit. There are three things that main function does.</p>
+<p>Let's refactor the code base a little bit. There are three things that main function does.</p>
 <ul>
 <li>show prompt and get input</li>
 <li>parse the input</li>
 <li>run the action</li>
 </ul>
-<p>I&#39;m gonna take out each functionaliy from loop and make a new function for it and add new data type for parsed action.</p>
+<p>I'm gonna take out each functionaliy from loop and make a new function for it and add new data type for parsed action.</p>
 <div class="sourceCode"><pre class="sourceCode"><code class="sourceCode"><span id="1"><a href="#1" tabindex="-1"></a><span class="ot">prompt ::</span> <span class="dt">IO</span> <span class="dt">Text</span></span>
 <span id="2"><a href="#2" tabindex="-1"></a>prompt <span class="ot">=</span> <span class="kw">do</span></span>
 <span id="3"><a href="#3" tabindex="-1"></a>  TIO.putStr <span class="st">&quot;&gt; &quot;</span></span>
@@ -162,7 +206,7 @@ try typing ls and pressing enter, and you will see result of ls command print ou
 <span id="42"><a href="#42" tabindex="-1"></a>    <span class="dt">Nothing</span> <span class="ot">-&gt;</span> hPutStrLn stderr <span class="st">&quot;parsing error&quot;</span></span>
 <span id="43"><a href="#43" tabindex="-1"></a>    <span class="dt">Just</span> action <span class="ot">-&gt;</span> runAction stdin stdout action <span class="ot">`catch`</span></span>
 <span id="44"><a href="#44" tabindex="-1"></a>                      \(<span class="ot">e ::</span> <span class="dt">SomeException</span>) <span class="ot">-&gt;</span> hPutStrLn stderr (<span class="fu">show</span> e)</span></code></pre></div>
-<p><code>createPipe</code> is for interprocess communication, returns two handles one can be used to write (<code>writer</code>) and one to read (<code>reader</code>). Here I&#39;m using writer as handle of output of first program and reader as input of second program. By using <code>createPipe</code>, we can even run two actions concurrently.</p>
+<p><code>createPipe</code> is for interprocess communication, returns two handles one can be used to write (<code>writer</code>) and one to read (<code>reader</code>). Here I'm using writer as handle of output of first program and reader as input of second program. By using <code>createPipe</code>, we can even run two actions concurrently.</p>
 <h2>Conclusion</h2>
 <p>This is whole program till here.</p>
 <div class="sourceCode"><pre class="sourceCode"><code class="sourceCode"><span id="1"><a href="#1" tabindex="-1"></a><span class="ot">{-# LANGUAGE OverloadedStrings #-}</span></span>
@@ -233,4 +277,10 @@ try typing ls and pressing enter, and you will see result of ls command print ou
 <span id="66"><a href="#66" tabindex="-1"></a>                      \(<span class="ot">e ::</span> <span class="dt">SomeException</span>) <span class="ot">-&gt;</span> hPutStrLn stderr (<span class="fu">show</span> e)</span></code></pre></div>
 <p>Source code is available on github in <a href="https://github.com/jedimahdi/lazysh">this link</a>.</p>
 <p>Thanks to Josh Mcguigan for <a href="https://www.joshmcguigan.com/blog/build-your-own-shell-rust/">this blog post</a>.</p>
-</article></div></div></div></body></html>
+
+                    </article>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
